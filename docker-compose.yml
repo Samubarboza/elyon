@@ -32,6 +32,19 @@ services:
     ports:
       - "6379:6379"
 
+  celery_worker:
+    build: .
+    container_name: elyon_celery_worker
+    command: celery -A core worker --loglevel=info
+    user: "${UID:-1000}:${GID:-1000}"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+
   nginx:
     image: nginx:1.27-alpine
     container_name: elyon_nginx
