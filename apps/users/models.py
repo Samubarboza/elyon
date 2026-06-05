@@ -40,4 +40,7 @@ class Company(models.Model):
 
 
 class User(AbstractUser):
-    pass
+    is_main_admin = models.BooleanField(default=False)
+    phone = models.CharField(max_length=30, blank=True)
+    document = models.CharField(max_length=30, blank=True)
+    position = models.CharField(max_length=50, blank=True)
