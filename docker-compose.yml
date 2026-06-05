@@ -35,7 +35,7 @@ services:
   celery_worker:
     build: .
     container_name: elyon_celery_worker
-    command: celery -A core worker --loglevel=info
+    entrypoint: ["celery", "-A", "core", "worker", "--loglevel=info"]
     user: "${UID:-1000}:${GID:-1000}"
     volumes:
       - .:/app

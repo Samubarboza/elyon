@@ -1,14 +1,16 @@
-<!doctype html>
-<html lang="es">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ELYON</title>
-</head>
-<body>
-    <main>
-        <h1>ELYON</h1>
-        <p>Sistema de gestión empresarial.</p>
-    </main>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>ELYON</h1>
+<p>Sistema de gestión empresarial.</p>
+{% if user.is_authenticated %}
+    <p>Hola, {{ user.get_username }}.</p>
+    <a href="{% url 'users:password_change' %}">Cambiar contraseña</a>
+    <form method="post" action="{% url 'users:logout' %}">
+        {% csrf_token %}
+        <button type="submit">Cerrar sesión</button>
+    </form>
+{% else %}
+    <a href="{% url 'users:login' %}">Iniciar sesión</a>
+{% endif %}
+{% endblock %}
