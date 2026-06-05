@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Usuario - ELYON{% endblock %}
+
+{% block content %}
+<h1>Usuario</h1>
+{% for message in messages %}
+    <p>{{ message }}</p>
+{% endfor %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>
+<a href="{% url 'users:user_list' %}">Volver</a>
+{% endblock %}
