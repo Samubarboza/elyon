@@ -3,16 +3,19 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
 from apps.users.forms import UserCreateForm, UserEditForm
+from apps.users.permissions import require_permission
 from apps.users.selectors import company_users, list_users
 from apps.users.services import UserActionError, create_user, set_user_active, update_user
 
 
 @login_required
+@require_permission('users.view_user')
 def user_list(request):
     return render(request, 'users/user_list.html', {'users': list_users()})
 
 
 @login_required
+@require_permission('users.add_user')
 def user_create(request):
     if request.method == 'POST':
         user_form = UserCreateForm(request.POST)
@@ -30,6 +33,7 @@ def user_create(request):
 
 
 @login_required
+@require_permission('users.change_user')
 def user_edit(request, user_id):
     user_to_edit = get_object_or_404(company_users(), pk=user_id)
     if request.method == 'POST':
@@ -44,6 +48,7 @@ def user_edit(request, user_id):
 
 
 @login_required
+@require_permission('users.change_user')
 def user_toggle_active(request, user_id):
     if request.method != 'POST':
         return redirect('users:user_list')
