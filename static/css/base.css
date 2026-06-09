@@ -31,3 +31,10 @@ body {
   --bs-btn-hover-bg: #001a73;
   --bs-btn-hover-border-color: #001a73;
 }
+
+/* Tablas dentro de vidrio en texto claro */
+.glass .table {
+  --bs-table-color: #ffffff;
+  --bs-table-bg: transparent;
+  --bs-table-border-color: rgba(255, 255, 255, 0.15);
+}

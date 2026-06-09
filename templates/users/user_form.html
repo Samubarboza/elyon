@@ -3,14 +3,15 @@
 {% block title %}Usuario - ELYON{% endblock %}
 
 {% block content %}
-<h1>Usuario</h1>
-{% for message in messages %}
-    <p>{{ message }}</p>
-{% endfor %}
-<form method="post">
+<div class="glass fade-in p-4 mx-auto text-white" style="max-width: 520px;">
+  <h1 class="h4 mb-4">Usuario</h1>
+  <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Guardar</button>
-</form>
-<a href="{% url 'users:user_list' %}">Volver</a>
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-primary">Guardar</button>
+      <a href="{% url 'users:user_list' %}" class="btn btn-outline-light">Volver</a>
+    </div>
+  </form>
+</div>
 {% endblock %}

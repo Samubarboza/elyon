@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/glass.css' %}">
     <link rel="stylesheet" href="{% static 'css/animations.css' %}">
+    {% block extrahead %}{% endblock %}
 </head>
 <body>
     {% block navbar %}
@@ -25,7 +26,7 @@
     </div>
     {% endif %}
 
-    <main class="container">
+    <main class="{% block main_class %}container{% endblock %}">
         {% block content %}{% endblock %}
     </main>
 
