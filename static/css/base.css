@@ -1,0 +1,33 @@
+/* Identidad base del sistema: variables y fondo institucional */
+
+:root {
+  --navy: #001354;
+
+  /* Override del primario de Bootstrap con el color institucional */
+  --bs-primary: #001354;
+  --bs-primary-rgb: 0, 19, 84;
+
+  /* Tokens de vidrio que reutiliza glass.css */
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.25);
+  --glass-blur: 18px;
+}
+
+body {
+  min-height: 100vh;
+  color: #ffffff;
+  background-color: var(--navy);
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(64, 120, 255, 0.55) 0%, transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(120, 80, 255, 0.50) 0%, transparent 45%),
+    radial-gradient(circle at 80% 15%, rgba(0, 200, 255, 0.35) 0%, transparent 40%);
+  background-attachment: fixed;
+}
+
+/* El boton primario sigue el color institucional */
+.btn-primary {
+  --bs-btn-bg: var(--navy);
+  --bs-btn-border-color: var(--navy);
+  --bs-btn-hover-bg: #001a73;
+  --bs-btn-hover-border-color: #001a73;
+}
