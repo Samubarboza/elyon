@@ -14,8 +14,11 @@ COPY . .
 
 RUN chmod +x /app/entrypoint.sh
 
+# Carpeta de estaticos con dueno no-root para el volumen compartido
+RUN mkdir -p /app/staticfiles && chown 1000:1000 /app/staticfiles
+
 EXPOSE 8000
 
 ENTRYPOINT ["/app/entrypoint.sh"]
 
-CMD ["gunicorn", "core.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["sh", "-c", "python manage.py collectstatic --noinput && gunicorn core.wsgi:application --bind 0.0.0.0:8000"]

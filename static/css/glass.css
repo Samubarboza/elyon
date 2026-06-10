@@ -1,0 +1,35 @@
+/* Superficie de vidrio reutilizable en cards, nav y modales */
+
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 22px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.30);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+
+/* Fallback solido donde el navegador no soporta el desenfoque */
+@supports not (backdrop-filter: blur(1px)) {
+  .glass {
+    background: rgba(20, 35, 90, 0.92);
+  }
+}
+
+/* Campo de entrada con el mismo lenguaje de vidrio */
+.glass-input {
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 12px;
+  color: #ffffff;
+}
+
+.glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: none;
+}

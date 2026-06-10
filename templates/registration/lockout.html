@@ -2,7 +2,11 @@
 
 {% block title %}Acceso bloqueado - ELYON{% endblock %}
 
+{% block navbar %}{% endblock %}
+
 {% block content %}
-<h1>Acceso bloqueado</h1>
-<p>Demasiados intentos fallidos. Por seguridad, esperá un momento antes de volver a intentar.</p>
+<div class="glass fade-in p-4 mx-auto text-white" style="max-width: 460px;">
+  <h1 class="h4 mb-3">Acceso bloqueado</h1>
+  <p class="mb-0">Demasiados intentos fallidos. Por seguridad, esperá un momento antes de volver a intentar.</p>
+</div>
 {% endblock %}
