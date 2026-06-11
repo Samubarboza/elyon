@@ -1,37 +1,80 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Usuarios - ELYON{% endblock %}
 
+{% block navbar %}{% endblock %}
+{% block main_class %}{% endblock %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+<link rel="stylesheet" href="{% static 'css/users.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="glass fade-in p-4 text-white">
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h1 class="h4 m-0">Usuarios</h1>
-    <a href="{% url 'users:user_create' %}" class="btn btn-primary btn-sm">Nuevo usuario</a>
-  </div>
-  <div class="table-responsive">
-    <table class="table table-borderless align-middle">
-      <thead>
-        <tr><th>Usuario</th><th>Nombre</th><th>Estado</th><th>Acciones</th></tr>
-      </thead>
-      <tbody>
-      {% for user_row in users %}
-        <tr>
-          <td>{{ user_row.username }}</td>
-          <td>{{ user_row.get_full_name }}</td>
-          <td>{% if user_row.is_active %}Activo{% else %}Inactivo{% endif %}</td>
-          <td>
-            <a href="{% url 'users:user_edit' user_row.id %}" class="btn btn-sm btn-primary">Editar</a>
-            {% if not user_row.is_main_admin %}
-            <form method="post" action="{% url 'users:user_toggle_active' user_row.id %}" class="d-inline">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-sm btn-outline-light">{% if user_row.is_active %}Desactivar{% else %}Activar{% endif %}</button>
-            </form>
-            {% endif %}
-          </td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
+<div class="menu-screen">
+
+  <span class="menu-circle menu-circle-1"></span>
+  <span class="menu-circle menu-circle-2"></span>
+  <span class="menu-circle menu-circle-3"></span>
+  <span class="menu-circle menu-circle-4"></span>
+
+  <div class="menu-content fade-in">
+
+    <div class="menu-header">
+      <div>
+        <p class="menu-brand">ELYON</p>
+        <p class="menu-subtitle">Sistema de gestión empresarial</p>
+      </div>
+    </div>
+
+    <div class="users-panel">
+
+      <div class="users-header">
+        <h1 class="users-title">Usuarios</h1>
+        <a href="{% url 'users:user_create' %}" class="btn btn-primary btn-sm">Nuevo usuario</a>
+      </div>
+
+      <div class="table-responsive">
+        <table class="users-table">
+          <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>Nombre</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for user_row in users %}
+            <tr>
+              <td class="users-username">{{ user_row.username }}</td>
+              <td>{{ user_row.get_full_name|default:"—" }}</td>
+              <td>
+                {% if user_row.is_active %}
+                <span class="status-pill status-active">Activo</span>
+                {% else %}
+                <span class="status-pill status-inactive">Inactivo</span>
+                {% endif %}
+              </td>
+              <td>
+                <div class="d-flex gap-2">
+                  <a href="{% url 'users:user_edit' user_row.id %}" class="btn btn-primary btn-sm">Editar</a>
+                  {% if not user_row.is_main_admin %}
+                  <form method="post" action="{% url 'users:user_toggle_active' user_row.id %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm users-btn-secondary">{% if user_row.is_active %}Desactivar{% else %}Activar{% endif %}</button>
+                  </form>
+                  {% endif %}
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
   </div>
 </div>
 {% endblock %}
