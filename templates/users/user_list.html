@@ -28,11 +28,19 @@
       </div>
     </div>
 
+    <nav class="users-breadcrumb">
+      <a href="{% url 'home' %}">Menú principal</a>
+      <span class="separator">›</span>
+      <span class="current">Usuarios</span>
+    </nav>
+
     <div class="users-panel">
 
       <div class="users-header">
         <h1 class="users-title">Usuarios</h1>
-        <a href="{% url 'users:user_create' %}" class="btn btn-primary btn-sm">Nuevo usuario</a>
+        <a href="{% url 'users:user_create' %}"
+           hx-get="{% url 'users:user_create' %}" hx-target="#modal-container" hx-swap="innerHTML"
+           class="btn btn-primary btn-sm">Nuevo usuario</a>
       </div>
 
       <div class="table-responsive">
@@ -47,28 +55,7 @@
           </thead>
           <tbody>
           {% for user_row in users %}
-            <tr>
-              <td class="users-username">{{ user_row.username }}</td>
-              <td>{{ user_row.get_full_name|default:"—" }}</td>
-              <td>
-                {% if user_row.is_active %}
-                <span class="status-pill status-active">Activo</span>
-                {% else %}
-                <span class="status-pill status-inactive">Inactivo</span>
-                {% endif %}
-              </td>
-              <td>
-                <div class="d-flex gap-2">
-                  <a href="{% url 'users:user_edit' user_row.id %}" class="btn btn-primary btn-sm">Editar</a>
-                  {% if not user_row.is_main_admin %}
-                  <form method="post" action="{% url 'users:user_toggle_active' user_row.id %}" class="d-inline">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-sm users-btn-secondary">{% if user_row.is_active %}Desactivar{% else %}Activar{% endif %}</button>
-                  </form>
-                  {% endif %}
-                </div>
-              </td>
-            </tr>
+            {% include 'users/_user_row.html' %}
           {% endfor %}
           </tbody>
         </table>
@@ -77,4 +64,6 @@
     </div>
   </div>
 </div>
+
+<div id="modal-container"></div>
 {% endblock %}

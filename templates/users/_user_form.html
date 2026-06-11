@@ -1,0 +1,102 @@
+<form method="post" class="users-form" hx-post="{{ request.path }}" hx-target="this" hx-swap="outerHTML">
+  {% csrf_token %}
+
+  {% if form.non_field_errors %}
+  <div class="mb-3">{{ form.non_field_errors }}</div>
+  {% endif %}
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-field">
+        {{ form.username.label_tag }}
+        {{ form.username }}
+        {% if form.username.help_text %}<div class="form-help">{{ form.username.help_text }}</div>{% endif %}
+        {{ form.username.errors }}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-field">
+        {{ form.email.label_tag }}
+        {{ form.email }}
+        {{ form.email.errors }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-field">
+        {{ form.first_name.label_tag }}
+        {{ form.first_name }}
+        {{ form.first_name.errors }}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-field">
+        {{ form.last_name.label_tag }}
+        {{ form.last_name }}
+        {{ form.last_name.errors }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-field">
+        {{ form.phone.label_tag }}
+        {{ form.phone }}
+        {{ form.phone.errors }}
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-field">
+        {{ form.document.label_tag }}
+        {{ form.document }}
+        {{ form.document.errors }}
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-field">
+        {{ form.position.label_tag }}
+        {{ form.position }}
+        {{ form.position.errors }}
+      </div>
+    </div>
+  </div>
+
+  {% if form.password1 %}
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-field">
+        {{ form.password1.label_tag }}
+        {{ form.password1 }}
+        {% if form.password1.help_text %}<div class="form-help">{{ form.password1.help_text }}</div>{% endif %}
+        {{ form.password1.errors }}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-field">
+        {{ form.password2.label_tag }}
+        {{ form.password2 }}
+        {% if form.password2.help_text %}<div class="form-help">{{ form.password2.help_text }}</div>{% endif %}
+        {{ form.password2.errors }}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="form-field">
+    <label>{{ form.groups.label }}:</label>
+    <div class="groups-grid">
+      {% for checkbox in form.groups %}
+      <label class="group-option">{{ checkbox.tag }} {{ checkbox.choice_label }}</label>
+      {% endfor %}
+    </div>
+    {{ form.groups.errors }}
+  </div>
+
+  <div class="d-flex gap-2 mt-4">
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="{% url 'users:user_list' %}" class="btn users-btn-secondary">Volver</a>
+  </div>
+</form>
