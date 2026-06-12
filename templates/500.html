@@ -1,0 +1,21 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Error del sistema - ELYON</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/glass.css' %}">
+</head>
+<body>
+    <main class="container">
+        <div class="glass p-4 mx-auto text-white" style="max-width: 460px; margin-top: 4rem;">
+            <h1 class="h4 mb-3">Ocurrió un error</h1>
+            <p class="mb-3">Tuvimos un problema en el sistema. Probá de nuevo en unos minutos.</p>
+            <a href="/" class="btn btn-primary">Volver al inicio</a>
+        </div>
+    </main>
+</body>
+</html>

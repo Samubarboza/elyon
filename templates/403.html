@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Acceso denegado - ELYON{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block content %}
+<div class="glass fade-in p-4 mx-auto text-white" style="max-width: 460px;">
+  <h1 class="h4 mb-3">Acceso denegado</h1>
+  <p class="mb-3">No tenés permiso para acceder a esta sección. Si creés que es un error, hablá con el administrador.</p>
+  <a href="{% url 'home' %}" class="btn btn-primary">Volver al inicio</a>
+</div>
+{% endblock %}
