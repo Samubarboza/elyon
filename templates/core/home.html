@@ -1,16 +1,100 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Menú principal - ELYON{% endblock %}
+
+{% block navbar %}{% endblock %}
+{% block main_class %}{% endblock %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+{% endblock %}
 
 {% block content %}
-<h1>ELYON</h1>
-<p>Sistema de gestión empresarial.</p>
-{% if user.is_authenticated %}
-    <p>Hola, {{ user.get_username }}.</p>
-    <a href="{% url 'users:password_change' %}">Cambiar contraseña</a>
-    <form method="post" action="{% url 'users:logout' %}">
-        {% csrf_token %}
-        <button type="submit">Cerrar sesión</button>
-    </form>
-{% else %}
-    <a href="{% url 'users:login' %}">Iniciar sesión</a>
-{% endif %}
+<div class="menu-screen">
+
+  <span class="menu-circle menu-circle-1"></span>
+  <span class="menu-circle menu-circle-2"></span>
+  <span class="menu-circle menu-circle-3"></span>
+  <span class="menu-circle menu-circle-4"></span>
+
+  <div class="menu-content fade-in">
+
+    <div class="menu-header">
+      <div>
+        <p class="menu-brand">ELYON</p>
+        <p class="menu-subtitle">Sistema de gestión empresarial</p>
+      </div>
+      <div class="menu-search glass-input">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="text" placeholder="Buscar módulo...">
+      </div>
+    </div>
+
+    <!-- Para activar un modulo, reemplazar su div por un enlace con su url -->
+    <div class="menu-grid">
+
+      <div class="menu-tile" style="color: #7DD3FC;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6" height="8" rx="1"/><rect x="4" y="16" width="6" height="4" rx="1"/><rect x="14" y="4" width="6" height="4" rx="1"/><rect x="14" y="12" width="6" height="8" rx="1"/></svg>
+        <span>Dashboard</span>
+      </div>
+
+      <div class="menu-tile" style="color: #86EFAC;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/><path d="M3 4h2l2.4 11.5a1 1 0 0 0 1 .8h7.7a1 1 0 0 0 1-.8L20 7H6"/></svg>
+        <span>Ventas</span>
+      </div>
+
+      <div class="menu-tile" style="color: #FDE68A;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 8h2M9 12h6M9 16h6"/></svg>
+        <span>Presupuestos</span>
+      </div>
+
+      <div class="menu-tile" style="color: #FDA4AF;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="18" r="1.5"/><circle cx="17" cy="18" r="1.5"/><path d="M5 18H3V5h10v11H8.5"/><path d="M13 8h4l3 3v5h-2.5"/></svg>
+        <span>Compras</span>
+      </div>
+
+      <div class="menu-tile" style="color: #C4B5FD;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v10l8 4 8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg>
+        <span>Productos</span>
+      </div>
+
+      <div class="menu-tile" style="color: #5EEAD4;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-4 9 4v13"/><path d="M7 21v-6h10v6M7 12h10"/></svg>
+        <span>Inventario</span>
+      </div>
+
+      <div class="menu-tile" style="color: #93C5FD;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="2.5"/><path d="M8.5 16c.7-1.6 2-2.5 3.5-2.5s2.8.9 3.5 2.5"/></svg>
+        <span>Clientes</span>
+      </div>
+
+      <div class="menu-tile" style="color: #F0ABFC;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16l-1.2-5H5.2z"/><path d="M5 9v11h14V9"/><path d="M9 20v-5h6v5"/></svg>
+        <span>Proveedores</span>
+      </div>
+
+      <div class="menu-tile" style="color: #6EE7B7;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 9v6M18 9v6"/></svg>
+        <span>Caja</span>
+      </div>
+
+      <div class="menu-tile" style="color: #FCD34D;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><rect x="4" y="12" width="3.5" height="8" rx="0.5"/><rect x="10.25" y="6" width="3.5" height="14" rx="0.5"/><rect x="16.5" y="9" width="3.5" height="11" rx="0.5"/></svg>
+        <span>Reportes</span>
+      </div>
+
+      <a href="{% url 'users:user_list' %}" class="menu-tile" style="color: #A5B4FC;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M16 5.5a3 3 0 0 1 0 5.5M21 20c0-2.3-1.5-4-3.5-4.7"/></svg>
+        <span>Usuarios</span>
+      </a>
+
+      <div class="menu-tile" style="color: #CBD5E1;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/></svg>
+        <span>Configuración</span>
+      </div>
+
+    </div>
+  </div>
+</div>
 {% endblock %}

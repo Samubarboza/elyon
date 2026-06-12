@@ -1,0 +1,89 @@
+/* Estilos propios del menu principal de modulos */
+
+.menu-screen {
+  position: relative;
+  min-height: 100vh;
+  padding: 40px 24px 56px;
+  overflow: hidden;
+}
+
+/* Circulos del diseno: los grandes asoman por las esquinas, los chicos son acentos */
+.menu-circle {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+}
+.menu-circle-1 { top: 6vmin; left: -5vmin; width: clamp(140px, 20vmin, 260px); height: clamp(140px, 20vmin, 260px); background: linear-gradient(135deg, rgba(80, 140, 255, 0.8), rgba(0, 80, 220, 0.3)); filter: blur(2px); }
+.menu-circle-2 { bottom: -6vmin; right: -5vmin; width: clamp(130px, 19vmin, 240px); height: clamp(130px, 19vmin, 240px); background: linear-gradient(135deg, rgba(150, 100, 255, 0.75), rgba(60, 40, 200, 0.3)); filter: blur(2px); }
+.menu-circle-3 { top: 4vmin; right: 14vmin; width: clamp(40px, 6vmin, 70px); height: clamp(40px, 6vmin, 70px); background: linear-gradient(135deg, rgba(0, 220, 255, 0.7), rgba(0, 120, 255, 0.25)); }
+.menu-circle-4 { bottom: 7vmin; left: 12vmin; width: clamp(30px, 4vmin, 52px); height: clamp(30px, 4vmin, 52px); background: linear-gradient(135deg, rgba(255, 255, 255, 0.45), rgba(120, 160, 255, 0.18)); }
+
+.menu-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Encabezado: marca a la izquierda, buscador a la derecha */
+.menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.menu-brand { font-size: 24px; font-weight: 500; letter-spacing: 6px; margin: 0; }
+.menu-subtitle { color: rgba(255, 255, 255, 0.55); font-size: 12px; letter-spacing: 1px; margin: 2px 0 0; }
+
+.menu-search { display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 14px; width: 260px; max-width: 100%; }
+.menu-search input { flex: 1; background: transparent; border: none; outline: none; color: #ffffff; height: 100%; font-size: 13px; }
+.menu-search input::placeholder { color: rgba(255, 255, 255, 0.5); }
+
+/* Grilla de modulos: 6 por fila en escritorio, se adapta sola en pantallas chicas */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 16px;
+}
+
+/* Cada modulo como tarjeta de vidrio */
+.menu-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 22px 8px 18px;
+  border-radius: 16px;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.menu-tile span { color: #ffffff; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.menu-tile svg { transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* Animacion macOS: el tile se eleva y el icono crece al pasar el mouse */
+.menu-tile:hover {
+  transform: translateY(-6px) scale(1.05);
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 14px 30px rgba(0, 0, 0, 0.35);
+}
+.menu-tile:hover svg { transform: scale(1.18); }
+.menu-tile:active { transform: translateY(-2px) scale(0.99); }
+
+/* Fallback solido donde no hay desenfoque */
+@supports not (backdrop-filter: blur(1px)) {
+  .menu-tile { background: rgba(20, 35, 90, 0.92); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-tile, .menu-tile svg { transition: none; }
+  .menu-tile:hover { transform: none; }
+  .menu-tile:hover svg { transform: none; }
+}

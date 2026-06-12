@@ -5,7 +5,7 @@ from django.contrib.auth.models import Group
 from apps.users.models import User
 
 
-USER_FIELDS = ['username', 'first_name', 'last_name', 'email', 'phone', 'document', 'position']
+USER_FIELDS = ['username', 'first_name', 'last_name', 'email', 'phone', 'document', 'position', 'groups']
 
 
 class UserCreateForm(UserCreationForm):

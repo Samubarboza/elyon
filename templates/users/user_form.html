@@ -1,17 +1,49 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Usuario - ELYON{% endblock %}
 
+{% block navbar %}{% endblock %}
+{% block main_class %}{% endblock %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+<link rel="stylesheet" href="{% static 'css/users.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="glass fade-in p-4 mx-auto text-white" style="max-width: 520px;">
-  <h1 class="h4 mb-4">Usuario</h1>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <div class="d-flex gap-2">
-      <button type="submit" class="btn btn-primary">Guardar</button>
-      <a href="{% url 'users:user_list' %}" class="btn btn-outline-light">Volver</a>
+<div class="menu-screen">
+
+  <span class="menu-circle menu-circle-1"></span>
+  <span class="menu-circle menu-circle-2"></span>
+  <span class="menu-circle menu-circle-3"></span>
+  <span class="menu-circle menu-circle-4"></span>
+
+  <div class="menu-content fade-in">
+
+    <div class="menu-header">
+      <div>
+        <p class="menu-brand">ELYON</p>
+        <p class="menu-subtitle">Sistema de gestión empresarial</p>
+      </div>
     </div>
-  </form>
+
+    <nav class="users-breadcrumb">
+      <a href="{% url 'home' %}">Menú principal</a>
+      <span class="separator">›</span>
+      <a href="{% url 'users:user_list' %}">Usuarios</a>
+      <span class="separator">›</span>
+      <span class="current">{% if form.password1 %}Crear usuario{% else %}Editar usuario{% endif %}</span>
+    </nav>
+
+    <div class="users-panel">
+      <h1 class="users-title mb-4">Usuario</h1>
+      {% include 'users/_user_form.html' %}
+    </div>
+  </div>
 </div>
+
+{% if limit_reached %}
+{% include 'users/_limit_modal.html' %}
+{% endif %}
 {% endblock %}

@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/glass.css' %}">
     <link rel="stylesheet" href="{% static 'css/animations.css' %}">
+    <link rel="stylesheet" href="{% static 'css/toast.css' %}">
     {% block extrahead %}{% endblock %}
 </head>
-<body>
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     {% block navbar %}
     <nav class="navbar glass px-3 mb-4">
         <span class="navbar-brand text-white fw-semibold m-0">ELYON</span>
@@ -19,9 +20,12 @@
     {% endblock %}
 
     {% if messages %}
-    <div class="container">
+    <div class="toast-stack">
         {% for message in messages %}
-        <div class="alert glass text-white fade-in">{{ message }}</div>
+        <div class="toast-item toast-{{ message.tags }}">
+            <span>{{ message }}</span>
+            <button type="button" class="toast-close" aria-label="Cerrar">&times;</button>
+        </div>
         {% endfor %}
     </div>
     {% endif %}
@@ -32,5 +36,6 @@
 
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/htmx.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
 </body>
 </html>
