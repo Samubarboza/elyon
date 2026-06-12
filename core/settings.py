@@ -134,7 +134,7 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'users:login'
 
 # Bloqueo temporal: 5 intentos fallidos por usuario e IP, 1 hora de bloqueo
-AXES_FAILURE_LIMIT = 5
+AXES_FAILURE_LIMIT = 15
 AXES_COOLOFF_TIME = 1
 AXES_LOCKOUT_PARAMETERS = [['username', 'ip_address']]
 AXES_RESET_ON_SUCCESS = True

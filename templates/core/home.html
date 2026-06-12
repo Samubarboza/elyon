@@ -84,7 +84,9 @@
         <span>Reportes</span>
       </div>
 
-      <a href="{% url 'users:user_list' %}" class="menu-tile" style="color: #A5B4FC;">
+      <a href="{% url 'users:user_list' %}"
+         hx-get="{% url 'users:user_list' %}" hx-target="#modal-container" hx-swap="innerHTML"
+         class="menu-tile" style="color: #A5B4FC;">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M16 5.5a3 3 0 0 1 0 5.5M21 20c0-2.3-1.5-4-3.5-4.7"/></svg>
         <span>Usuarios</span>
       </a>
@@ -97,4 +99,6 @@
     </div>
   </div>
 </div>
+
+<div id="modal-container"></div>
 {% endblock %}
