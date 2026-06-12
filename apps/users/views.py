@@ -13,6 +13,9 @@ from apps.users.services import UserActionError, create_user, limit_message, pla
 @login_required
 @require_permission('users.view_user')
 def user_list(request):
+    # Entrada desde el menu por HTMX: con permiso navega a la pagina real
+    if request.htmx:
+        return HttpResponseClientRedirect(reverse('users:user_list'))
     return render(request, 'users/user_list.html', {'users': list_users()})
 
 

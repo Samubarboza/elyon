@@ -2,6 +2,7 @@ import logging
 from functools import wraps
 
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import render
 
 from apps.users.signals import get_client_ip
 
@@ -15,6 +16,9 @@ def require_permission(permission_codename):
         def wrapped_view(request, *args, **kwargs):
             if not request.user.has_perm(permission_codename):
                 logger.warning('Acceso no autorizado: usuario %s desde %s intento %s', request.user.get_username(), get_client_ip(request), permission_codename)
+                # Por HTMX mostramos un modal sobre el menu, si no la pagina 403
+                if request.htmx:
+                    return render(request, 'users/_permission_modal.html')
                 raise PermissionDenied
             return view_function(request, *args, **kwargs)
         return wrapped_view
