@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Usuario - ELYON{% endblock %}
+{% block title %}Cliente - ELYON{% endblock %}
 
 {% block navbar %}{% endblock %}
 {% block main_class %}{% endblock %}
@@ -9,7 +9,7 @@
 {% block extrahead %}
 <link rel="stylesheet" href="{% static 'css/menu.css' %}">
 <link rel="stylesheet" href="{% static 'css/module.css' %}">
-<link rel="stylesheet" href="{% static 'css/users.css' %}">
+<link rel="stylesheet" href="{% static 'css/customers.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -32,19 +32,15 @@
     <nav class="module-breadcrumb">
       <a href="{% url 'home' %}">Menú principal</a>
       <span class="separator">›</span>
-      <a href="{% url 'users:user_list' %}">Usuarios</a>
+      <a href="{% url 'customers:customer_list' %}">Clientes</a>
       <span class="separator">›</span>
-      <span class="current">{% if form.password1 %}Crear usuario{% else %}Editar usuario{% endif %}</span>
+      <span class="current">{% if form.instance.pk %}Editar cliente{% else %}Nuevo cliente{% endif %}</span>
     </nav>
 
     <div class="module-panel">
-      <h1 class="module-title mb-4">Usuario</h1>
-      {% include 'users/_user_form.html' %}
+      <h1 class="module-title mb-4">Cliente</h1>
+      {% include 'customers/_customer_form.html' %}
     </div>
   </div>
 </div>
-
-{% if limit_reached %}
-{% include 'users/_limit_modal.html' %}
-{% endif %}
 {% endblock %}
