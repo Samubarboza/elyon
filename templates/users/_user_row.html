@@ -1,5 +1,5 @@
 <tr id="user-row-{{ user_row.id }}">
-  <td class="users-username">{{ user_row.username }}</td>
+  <td class="module-strong">{{ user_row.username }}</td>
   <td>{{ user_row.get_full_name|default:"—" }}</td>
   <td>
     {% if user_row.is_active %}
@@ -16,7 +16,7 @@
             hx-post="{% url 'users:user_toggle_active' user_row.id %}"
             hx-target="#user-row-{{ user_row.id }}" hx-swap="outerHTML" class="d-inline">
         {% csrf_token %}
-        <button type="submit" class="btn btn-sm users-btn-secondary">{% if user_row.is_active %}Desactivar{% else %}Activar{% endif %}</button>
+        <button type="submit" class="btn btn-sm module-btn-secondary">{% if user_row.is_active %}Desactivar{% else %}Activar{% endif %}</button>
       </form>
       {% endif %}
     </div>

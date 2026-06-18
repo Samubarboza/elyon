@@ -16,6 +16,14 @@ class Customer(models.Model):
         verbose_name = 'cliente'
         verbose_name_plural = 'clientes'
         ordering = ['name']
+        constraints = [
+            models.UniqueConstraint(
+                fields=['document'],
+                condition=~models.Q(document=''),
+                name='customer_unique_document',
+                violation_error_message='Ya existe un cliente con este documento.',
+            ),
+        ]
 
     def __str__(self):
         return self.name

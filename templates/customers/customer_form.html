@@ -8,7 +8,7 @@
 
 {% block extrahead %}
 <link rel="stylesheet" href="{% static 'css/menu.css' %}">
-<link rel="stylesheet" href="{% static 'css/users.css' %}">
+<link rel="stylesheet" href="{% static 'css/module.css' %}">
 <link rel="stylesheet" href="{% static 'css/customers.css' %}">
 {% endblock %}
 
@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <nav class="users-breadcrumb">
+    <nav class="module-breadcrumb">
       <a href="{% url 'home' %}">Menú principal</a>
       <span class="separator">›</span>
       <a href="{% url 'customers:customer_list' %}">Clientes</a>
@@ -37,8 +37,8 @@
       <span class="current">{% if form.instance.pk %}Editar cliente{% else %}Nuevo cliente{% endif %}</span>
     </nav>
 
-    <div class="users-panel">
-      <h1 class="users-title mb-4">Cliente</h1>
+    <div class="module-panel">
+      <h1 class="module-title mb-4">Cliente</h1>
       {% include 'customers/_customer_form.html' %}
     </div>
   </div>

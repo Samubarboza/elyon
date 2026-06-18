@@ -1,0 +1,41 @@
+<div class="table-responsive">
+  <table class="module-table">
+    <thead>
+      <tr>
+        <th>Cliente</th>
+        <th>Documento</th>
+        <th>Teléfono</th>
+        <th>Saldo</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for customer_row in customers_page %}
+      {% include 'customers/_customer_row.html' %}
+    {% empty %}
+      <tr><td colspan="6" class="module-empty">No hay clientes para mostrar.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% if customers_page.paginator.num_pages > 1 %}
+<div class="module-pager">
+  {% if customers_page.has_previous %}
+  <a href="?search={{ search_text|urlencode }}&page={{ customers_page.previous_page_number }}"
+     hx-get="?search={{ search_text|urlencode }}&page={{ customers_page.previous_page_number }}"
+     hx-target="#customer-results" hx-swap="innerHTML">Anterior</a>
+  {% else %}
+  <span class="disabled">Anterior</span>
+  {% endif %}
+  <span class="current">Página {{ customers_page.number }} de {{ customers_page.paginator.num_pages }}</span>
+  {% if customers_page.has_next %}
+  <a href="?search={{ search_text|urlencode }}&page={{ customers_page.next_page_number }}"
+     hx-get="?search={{ search_text|urlencode }}&page={{ customers_page.next_page_number }}"
+     hx-target="#customer-results" hx-swap="innerHTML">Siguiente</a>
+  {% else %}
+  <span class="disabled">Siguiente</span>
+  {% endif %}
+</div>
+{% endif %}

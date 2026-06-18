@@ -1,5 +1,5 @@
 <tr id="customer-row-{{ customer_row.id }}">
-  <td class="users-username">{{ customer_row.name }}</td>
+  <td class="module-strong">{{ customer_row.name }}</td>
   <td>{{ customer_row.document|default:"—" }}</td>
   <td>{{ customer_row.phone|default:"—" }}</td>
   <td class="customer-balance">{{ customer_row.pending_balance }} Gs</td>
@@ -17,7 +17,7 @@
             hx-post="{% url 'customers:customer_toggle_active' customer_row.id %}"
             hx-target="#customer-row-{{ customer_row.id }}" hx-swap="outerHTML" class="d-inline">
         {% csrf_token %}
-        <button type="submit" class="btn btn-sm users-btn-secondary">{% if customer_row.is_active %}Desactivar{% else %}Activar{% endif %}</button>
+        <button type="submit" class="btn btn-sm module-btn-secondary">{% if customer_row.is_active %}Desactivar{% else %}Activar{% endif %}</button>
       </form>
     </div>
   </td>

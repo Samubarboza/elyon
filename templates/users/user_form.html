@@ -8,6 +8,7 @@
 
 {% block extrahead %}
 <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+<link rel="stylesheet" href="{% static 'css/module.css' %}">
 <link rel="stylesheet" href="{% static 'css/users.css' %}">
 {% endblock %}
 
@@ -28,7 +29,7 @@
       </div>
     </div>
 
-    <nav class="users-breadcrumb">
+    <nav class="module-breadcrumb">
       <a href="{% url 'home' %}">Menú principal</a>
       <span class="separator">›</span>
       <a href="{% url 'users:user_list' %}">Usuarios</a>
@@ -36,8 +37,8 @@
       <span class="current">{% if form.password1 %}Crear usuario{% else %}Editar usuario{% endif %}</span>
     </nav>
 
-    <div class="users-panel">
-      <h1 class="users-title mb-4">Usuario</h1>
+    <div class="module-panel">
+      <h1 class="module-title mb-4">Usuario</h1>
       {% include 'users/_user_form.html' %}
     </div>
   </div>

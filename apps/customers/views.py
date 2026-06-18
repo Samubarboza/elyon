@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django_htmx.http import HttpResponseClientRedirect, trigger_client_event
@@ -11,18 +12,22 @@ from apps.customers.services import create_customer, set_customer_active, update
 from apps.users.permissions import require_permission
 
 
+CUSTOMERS_PER_PAGE = 15
+
+
 @login_required
 @require_permission('customers.view_customer')
 def customer_list(request):
     # Entrada desde el menu por HTMX: con permiso navega a la pagina real
-    if request.htmx and 'search' not in request.GET:
+    if request.htmx and 'search' not in request.GET and 'page' not in request.GET:
         return HttpResponseClientRedirect(reverse('customers:customer_list'))
     search_text = request.GET.get('search', '')
     customers = list_customers(search_text)
-    # La busqueda por HTMX solo reemplaza las filas de la tabla
+    customers_page = Paginator(customers, CUSTOMERS_PER_PAGE).get_page(request.GET.get('page'))
+    # La busqueda y el paginado por HTMX solo reemplazan la zona de resultados
     if request.htmx:
-        return render(request, 'customers/_customer_table.html', {'customers': customers})
-    return render(request, 'customers/customer_list.html', {'customers': customers, 'search_text': search_text})
+        return render(request, 'customers/_customer_results.html', {'customers_page': customers_page, 'search_text': search_text})
+    return render(request, 'customers/customer_list.html', {'customers_page': customers_page, 'search_text': search_text})
 
 
 @login_required

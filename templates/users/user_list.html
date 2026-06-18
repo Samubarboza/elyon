@@ -8,6 +8,7 @@
 
 {% block extrahead %}
 <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+<link rel="stylesheet" href="{% static 'css/module.css' %}">
 <link rel="stylesheet" href="{% static 'css/users.css' %}">
 {% endblock %}
 
@@ -28,23 +29,23 @@
       </div>
     </div>
 
-    <nav class="users-breadcrumb">
+    <nav class="module-breadcrumb">
       <a href="{% url 'home' %}">Menú principal</a>
       <span class="separator">›</span>
       <span class="current">Usuarios</span>
     </nav>
 
-    <div class="users-panel">
+    <div class="module-panel">
 
-      <div class="users-header">
-        <h1 class="users-title">Usuarios</h1>
+      <div class="module-header">
+        <h1 class="module-title">Usuarios</h1>
         <a href="{% url 'users:user_create' %}"
            hx-get="{% url 'users:user_create' %}" hx-target="#modal-container" hx-swap="innerHTML"
            class="btn btn-primary btn-sm">Nuevo usuario</a>
       </div>
 
       <div class="table-responsive">
-        <table class="users-table">
+        <table class="module-table">
           <thead>
             <tr>
               <th>Usuario</th>

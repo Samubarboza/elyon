@@ -1,0 +1,143 @@
+/* Estilos comunes a todos los modulos: panel blanco, tabla, formulario y paginado.
+   Cada modulo carga este archivo y agrega su propio css solo para lo especifico. */
+
+/* Panel blanco sobre el fondo del menu */
+.module-panel {
+  padding: 26px 32px;
+  border-radius: 22px;
+  color: #33405c;
+  background: #ffffff;
+  border: 1px solid rgba(0, 19, 84, 0.06);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+/* Migas de navegacion en la zona azul */
+.module-breadcrumb { font-size: 13px; color: rgba(255, 255, 255, 0.6); margin-bottom: 16px; }
+.module-breadcrumb a { color: rgba(255, 255, 255, 0.6); text-decoration: none; }
+.module-breadcrumb a:hover { color: rgba(255, 255, 255, 0.85); }
+.module-breadcrumb .separator { margin: 0 8px; }
+.module-breadcrumb .current { color: #ffffff; }
+
+/* Encabezado: titulo a la izquierda, acciones a la derecha */
+.module-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 18px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid rgba(0, 19, 84, 0.08);
+}
+.module-title { color: #001354; font-size: 22px; font-weight: 700; margin: 0; }
+
+/* Tabla sobre el panel claro */
+.module-table { width: 100%; margin: 0; border-collapse: collapse; }
+.module-table thead th {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: rgba(0, 19, 84, 0.50);
+  padding: 14px 12px;
+  text-align: left;
+}
+.module-table tbody td {
+  padding: 16px 12px;
+  font-size: 14px;
+  vertical-align: middle;
+  border-top: 1px solid rgba(0, 19, 84, 0.07);
+}
+.module-strong { color: #001354; font-weight: 500; }
+
+/* Estado como pill, verde para activo y gris para inactivo */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.status-pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.status-active { background: rgba(34, 197, 94, 0.12); color: #16a34a; }
+.status-inactive { background: rgba(100, 116, 139, 0.15); color: #64748b; }
+
+/* Botones del panel */
+.module-panel .btn { border-radius: 9px; font-size: 13px; }
+.module-panel .btn-sm { padding: 7px 16px; }
+.module-btn-secondary {
+  background: rgba(255, 255, 255, 0.70);
+  border: 1px solid rgba(0, 19, 84, 0.18);
+  color: #001354;
+}
+.module-btn-secondary:hover { background: #ffffff; border-color: rgba(0, 19, 84, 0.30); color: #001354; }
+
+/* Buscador del listado */
+.module-search {
+  height: 38px;
+  padding: 0 14px;
+  min-width: 220px;
+  font-size: 13px;
+  color: #001354;
+  background: #f4f6fb;
+  border: 1px solid rgba(0, 19, 84, 0.12);
+  border-radius: 9px;
+  outline: none;
+}
+.module-search:focus { background: #ffffff; border-color: #001354; }
+
+/* Formulario de alta y edicion sobre el panel blanco */
+.module-form .form-field { margin-bottom: 18px; }
+.module-form label { display: block; color: #001354; font-size: 13px; font-weight: 500; margin-bottom: 7px; }
+.module-form input[type="text"],
+.module-form input[type="email"],
+.module-form input[type="password"] {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  font-size: 14px;
+  color: #001354;
+  background: #f4f6fb;
+  border: 1px solid rgba(0, 19, 84, 0.12);
+  border-radius: 10px;
+  outline: none;
+}
+.module-form input:focus { background: #ffffff; border-color: #001354; }
+.module-form textarea {
+  width: 100%;
+  min-height: 90px;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: #001354;
+  background: #f4f6fb;
+  border: 1px solid rgba(0, 19, 84, 0.12);
+  border-radius: 10px;
+  outline: none;
+  resize: vertical;
+}
+.module-form textarea:focus { background: #ffffff; border-color: #001354; }
+
+/* Campo con error: borde rojo y el detalle en rojo debajo */
+.module-form .form-field:has(.errorlist) input { border-color: #dc2626; background: #fff5f5; }
+.module-form .errorlist { list-style: none; margin: 6px 0 0; padding: 0; }
+.module-form .errorlist li { font-size: 12px; color: #dc2626; }
+.form-help { font-size: 12px; color: #8a93a8; margin-top: 6px; }
+.form-help ul { margin: 4px 0 0; padding-left: 18px; }
+
+/* Fila vacia y paginado de la tabla */
+.module-empty { text-align: center; color: #8a93a8; padding: 22px 12px; }
+.module-pager { display: flex; gap: 8px; justify-content: center; align-items: center; margin-top: 18px; }
+.module-pager a, .module-pager span {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  text-decoration: none;
+  color: #001354;
+  background: #f4f6fb;
+  border: 1px solid rgba(0, 19, 84, 0.12);
+}
+.module-pager a:hover { background: #ffffff; border-color: #001354; }
+.module-pager .current { background: #001354; color: #ffffff; border-color: #001354; }
+.module-pager .disabled { opacity: 0.5; pointer-events: none; }

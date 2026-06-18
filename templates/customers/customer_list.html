@@ -8,7 +8,7 @@
 
 {% block extrahead %}
 <link rel="stylesheet" href="{% static 'css/menu.css' %}">
-<link rel="stylesheet" href="{% static 'css/users.css' %}">
+<link rel="stylesheet" href="{% static 'css/module.css' %}">
 <link rel="stylesheet" href="{% static 'css/customers.css' %}">
 {% endblock %}
 
@@ -29,44 +29,30 @@
       </div>
     </div>
 
-    <nav class="users-breadcrumb">
+    <nav class="module-breadcrumb">
       <a href="{% url 'home' %}">Menú principal</a>
       <span class="separator">›</span>
       <span class="current">Clientes</span>
     </nav>
 
-    <div class="users-panel">
+    <div class="module-panel">
 
-      <div class="users-header">
-        <h1 class="users-title">Clientes</h1>
+      <div class="module-header">
+        <h1 class="module-title">Clientes</h1>
         <div class="d-flex gap-2 align-items-center flex-wrap">
           <input type="text" name="search" value="{{ search_text }}" placeholder="Buscar cliente..."
-                 class="customers-search" autocomplete="off"
+                 class="module-search" autocomplete="off"
                  hx-get="{% url 'customers:customer_list' %}"
                  hx-trigger="input changed delay:300ms"
-                 hx-target="#customer-rows" hx-swap="innerHTML">
+                 hx-target="#customer-results" hx-swap="innerHTML">
           <a href="{% url 'customers:customer_create' %}"
              hx-get="{% url 'customers:customer_create' %}" hx-target="#modal-container" hx-swap="innerHTML"
              class="btn btn-primary btn-sm">Nuevo cliente</a>
         </div>
       </div>
 
-      <div class="table-responsive">
-        <table class="users-table">
-          <thead>
-            <tr>
-              <th>Cliente</th>
-              <th>Documento</th>
-              <th>Teléfono</th>
-              <th>Saldo</th>
-              <th>Estado</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="customer-rows">
-            {% include 'customers/_customer_table.html' %}
-          </tbody>
-        </table>
+      <div id="customer-results">
+        {% include 'customers/_customer_results.html' %}
       </div>
 
     </div>
