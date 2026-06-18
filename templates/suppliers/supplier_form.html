@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Proveedor - ELYON{% endblock %}
+
+{% block navbar %}{% endblock %}
+{% block main_class %}{% endblock %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+<link rel="stylesheet" href="{% static 'css/module.css' %}">
+<link rel="stylesheet" href="{% static 'css/suppliers.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="menu-screen">
+
+  <span class="menu-circle menu-circle-1"></span>
+  <span class="menu-circle menu-circle-2"></span>
+  <span class="menu-circle menu-circle-3"></span>
+  <span class="menu-circle menu-circle-4"></span>
+
+  <div class="menu-content fade-in">
+
+    <div class="menu-header">
+      <div>
+        <p class="menu-brand">ELYON</p>
+        <p class="menu-subtitle">Sistema de gestión empresarial</p>
+      </div>
+    </div>
+
+    <nav class="module-breadcrumb">
+      <a href="{% url 'home' %}">Menú principal</a>
+      <span class="separator">›</span>
+      <a href="{% url 'suppliers:supplier_list' %}">Proveedores</a>
+      <span class="separator">›</span>
+      <span class="current">{% if form.instance.pk %}Editar proveedor{% else %}Nuevo proveedor{% endif %}</span>
+    </nav>
+
+    <div class="module-panel">
+      <h1 class="module-title mb-4">Proveedor</h1>
+      {% include 'suppliers/_supplier_form.html' %}
+    </div>
+  </div>
+</div>
+{% endblock %}

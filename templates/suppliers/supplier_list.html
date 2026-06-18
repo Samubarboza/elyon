@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Proveedores - ELYON{% endblock %}
+
+{% block navbar %}{% endblock %}
+{% block main_class %}{% endblock %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+<link rel="stylesheet" href="{% static 'css/module.css' %}">
+<link rel="stylesheet" href="{% static 'css/suppliers.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="menu-screen">
+
+  <span class="menu-circle menu-circle-1"></span>
+  <span class="menu-circle menu-circle-2"></span>
+  <span class="menu-circle menu-circle-3"></span>
+  <span class="menu-circle menu-circle-4"></span>
+
+  <div class="menu-content fade-in">
+
+    <div class="menu-header">
+      <div>
+        <p class="menu-brand">ELYON</p>
+        <p class="menu-subtitle">Sistema de gestión empresarial</p>
+      </div>
+    </div>
+
+    <nav class="module-breadcrumb">
+      <a href="{% url 'home' %}">Menú principal</a>
+      <span class="separator">›</span>
+      <span class="current">Proveedores</span>
+    </nav>
+
+    <div class="module-panel">
+
+      <div class="module-header">
+        <h1 class="module-title">Proveedores</h1>
+        <div class="d-flex gap-2 align-items-center flex-wrap">
+          <input type="text" name="search" value="{{ search_text }}" placeholder="Buscar proveedor..."
+                 class="module-search" autocomplete="off"
+                 hx-get="{% url 'suppliers:supplier_list' %}"
+                 hx-trigger="input changed delay:300ms"
+                 hx-target="#supplier-results" hx-swap="innerHTML">
+          <a href="{% url 'suppliers:supplier_create' %}"
+             hx-get="{% url 'suppliers:supplier_create' %}" hx-target="#modal-container" hx-swap="innerHTML"
+             class="btn btn-primary btn-sm">Nuevo proveedor</a>
+        </div>
+      </div>
+
+      <div id="supplier-results">
+        {% include 'suppliers/_supplier_results.html' %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="modal-container"></div>
+{% endblock %}
