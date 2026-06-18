@@ -1,0 +1,24 @@
+<tr id="customer-row-{{ customer_row.id }}">
+  <td class="users-username">{{ customer_row.name }}</td>
+  <td>{{ customer_row.document|default:"—" }}</td>
+  <td>{{ customer_row.phone|default:"—" }}</td>
+  <td class="customer-balance">{{ customer_row.pending_balance }} Gs</td>
+  <td>
+    {% if customer_row.is_active %}
+    <span class="status-pill status-active">Activo</span>
+    {% else %}
+    <span class="status-pill status-inactive">Inactivo</span>
+    {% endif %}
+  </td>
+  <td>
+    <div class="d-flex gap-2">
+      <a href="{% url 'customers:customer_edit' customer_row.id %}" class="btn btn-primary btn-sm">Editar</a>
+      <form method="post" action="{% url 'customers:customer_toggle_active' customer_row.id %}"
+            hx-post="{% url 'customers:customer_toggle_active' customer_row.id %}"
+            hx-target="#customer-row-{{ customer_row.id }}" hx-swap="outerHTML" class="d-inline">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm users-btn-secondary">{% if customer_row.is_active %}Desactivar{% else %}Activar{% endif %}</button>
+      </form>
+    </div>
+  </td>
+</tr>

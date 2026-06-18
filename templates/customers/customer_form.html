@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Cliente - ELYON{% endblock %}
+
+{% block navbar %}{% endblock %}
+{% block main_class %}{% endblock %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+<link rel="stylesheet" href="{% static 'css/users.css' %}">
+<link rel="stylesheet" href="{% static 'css/customers.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="menu-screen">
+
+  <span class="menu-circle menu-circle-1"></span>
+  <span class="menu-circle menu-circle-2"></span>
+  <span class="menu-circle menu-circle-3"></span>
+  <span class="menu-circle menu-circle-4"></span>
+
+  <div class="menu-content fade-in">
+
+    <div class="menu-header">
+      <div>
+        <p class="menu-brand">ELYON</p>
+        <p class="menu-subtitle">Sistema de gestión empresarial</p>
+      </div>
+    </div>
+
+    <nav class="users-breadcrumb">
+      <a href="{% url 'home' %}">Menú principal</a>
+      <span class="separator">›</span>
+      <a href="{% url 'customers:customer_list' %}">Clientes</a>
+      <span class="separator">›</span>
+      <span class="current">{% if form.instance.pk %}Editar cliente{% else %}Nuevo cliente{% endif %}</span>
+    </nav>
+
+    <div class="users-panel">
+      <h1 class="users-title mb-4">Cliente</h1>
+      {% include 'customers/_customer_form.html' %}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+/* Estilos propios del modulo Clientes. Reutiliza la base de users.css */
+
+/* Buscador del listado, dentro del panel claro */
+.customers-search {
+  height: 38px;
+  padding: 0 14px;
+  min-width: 220px;
+  font-size: 13px;
+  color: #001354;
+  background: #f4f6fb;
+  border: 1px solid rgba(0, 19, 84, 0.12);
+  border-radius: 9px;
+  outline: none;
+}
+.customers-search:focus { background: #ffffff; border-color: #001354; }
+
+/* Observaciones del formulario */
+.users-form textarea {
+  width: 100%;
+  min-height: 90px;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: #001354;
+  background: #f4f6fb;
+  border: 1px solid rgba(0, 19, 84, 0.12);
+  border-radius: 10px;
+  outline: none;
+  resize: vertical;
+}
+.users-form textarea:focus { background: #ffffff; border-color: #001354; }
+
+.customer-balance { color: #001354; font-weight: 500; }
+.customers-empty { text-align: center; color: #8a93a8; padding: 22px 12px; }
