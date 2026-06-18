@@ -1,0 +1,41 @@
+<div class="table-responsive">
+  <table class="module-table">
+    <thead>
+      <tr>
+        <th>Proveedor</th>
+        <th>Documento</th>
+        <th>Teléfono</th>
+        <th>Saldo</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for supplier_row in suppliers_page %}
+      {% include 'suppliers/_supplier_row.html' %}
+    {% empty %}
+      <tr><td colspan="6" class="module-empty">No hay proveedores para mostrar.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% if suppliers_page.paginator.num_pages > 1 %}
+<div class="module-pager">
+  {% if suppliers_page.has_previous %}
+  <a href="?search={{ search_text|urlencode }}&page={{ suppliers_page.previous_page_number }}"
+     hx-get="?search={{ search_text|urlencode }}&page={{ suppliers_page.previous_page_number }}"
+     hx-target="#supplier-results" hx-swap="innerHTML">Anterior</a>
+  {% else %}
+  <span class="disabled">Anterior</span>
+  {% endif %}
+  <span class="current">Página {{ suppliers_page.number }} de {{ suppliers_page.paginator.num_pages }}</span>
+  {% if suppliers_page.has_next %}
+  <a href="?search={{ search_text|urlencode }}&page={{ suppliers_page.next_page_number }}"
+     hx-get="?search={{ search_text|urlencode }}&page={{ suppliers_page.next_page_number }}"
+     hx-target="#supplier-results" hx-swap="innerHTML">Siguiente</a>
+  {% else %}
+  <span class="disabled">Siguiente</span>
+  {% endif %}
+</div>
+{% endif %}

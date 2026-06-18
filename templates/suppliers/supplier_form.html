@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Cliente - ELYON{% endblock %}
+{% block title %}Proveedor - ELYON{% endblock %}
 
 {% block navbar %}{% endblock %}
 {% block main_class %}{% endblock %}
@@ -9,7 +9,7 @@
 {% block extrahead %}
 <link rel="stylesheet" href="{% static 'css/menu.css' %}">
 <link rel="stylesheet" href="{% static 'css/module.css' %}">
-<link rel="stylesheet" href="{% static 'css/customers.css' %}">
+<link rel="stylesheet" href="{% static 'css/suppliers.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -26,14 +26,14 @@
     <nav class="module-breadcrumb">
       <a href="{% url 'home' %}">Menú principal</a>
       <span class="separator">›</span>
-      <a href="{% url 'customers:customer_list' %}">Clientes</a>
+      <a href="{% url 'suppliers:supplier_list' %}">Proveedores</a>
       <span class="separator">›</span>
-      <span class="current">{% if form.instance.pk %}Editar cliente{% else %}Nuevo cliente{% endif %}</span>
+      <span class="current">{% if form.instance.pk %}Editar proveedor{% else %}Nuevo proveedor{% endif %}</span>
     </nav>
 
     <div class="module-panel">
-      <h1 class="module-title mb-4">Cliente</h1>
-      {% include 'customers/_customer_form.html' %}
+      <h1 class="module-title mb-4">Proveedor</h1>
+      {% include 'suppliers/_supplier_form.html' %}
     </div>
   </div>
 </div>

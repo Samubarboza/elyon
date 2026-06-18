@@ -1,0 +1,24 @@
+<tr id="supplier-row-{{ supplier_row.id }}">
+  <td class="module-strong">{{ supplier_row.name }}</td>
+  <td>{{ supplier_row.document|default:"—" }}</td>
+  <td>{{ supplier_row.phone|default:"—" }}</td>
+  <td class="supplier-balance">{{ supplier_row.pending_balance }} Gs</td>
+  <td>
+    {% if supplier_row.is_active %}
+    <span class="status-pill status-active">Activo</span>
+    {% else %}
+    <span class="status-pill status-inactive">Inactivo</span>
+    {% endif %}
+  </td>
+  <td>
+    <div class="d-flex gap-2">
+      <a href="{% url 'suppliers:supplier_edit' supplier_row.id %}" class="btn btn-primary btn-sm">Editar</a>
+      <form method="post" action="{% url 'suppliers:supplier_toggle_active' supplier_row.id %}"
+            hx-post="{% url 'suppliers:supplier_toggle_active' supplier_row.id %}"
+            hx-target="#supplier-row-{{ supplier_row.id }}" hx-swap="outerHTML" class="d-inline">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm module-btn-secondary">{% if supplier_row.is_active %}Desactivar{% else %}Activar{% endif %}</button>
+      </form>
+    </div>
+  </td>
+</tr>
