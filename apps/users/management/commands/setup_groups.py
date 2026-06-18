@@ -17,10 +17,11 @@ GROUPS = [
 # Permisos por grupo segun los modelos que ya existen.
 # Cada modulo nuevo agregara aca sus permisos cuando se desarrolle.
 GROUP_PERMISSIONS = {
-    'Administración': ['add_user', 'change_user', 'view_user', 'view_group'],
+    'Administración': ['add_user', 'change_user', 'view_user', 'view_group', 'add_supplier', 'change_supplier', 'view_supplier'],
     'Usuarios': ['add_user', 'change_user', 'view_user', 'view_group'],
     'Configuración': ['view_company', 'change_company'],
     'Clientes': ['add_customer', 'change_customer', 'view_customer'],
+    'Inventario': ['add_supplier', 'change_supplier', 'view_supplier'],
 }
 
 
