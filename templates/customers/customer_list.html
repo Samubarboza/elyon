@@ -15,18 +15,12 @@
 {% block content %}
 <div class="menu-screen">
 
-  <span class="menu-circle menu-circle-1"></span>
-  <span class="menu-circle menu-circle-2"></span>
-  <span class="menu-circle menu-circle-3"></span>
-  <span class="menu-circle menu-circle-4"></span>
+  {% include 'partials/menu_circles.html' %}
 
   <div class="menu-content fade-in">
 
     <div class="menu-header">
-      <div>
-        <p class="menu-brand">ELYON</p>
-        <p class="menu-subtitle">Sistema de gestión empresarial</p>
-      </div>
+      {% include 'partials/menu_brand.html' %}
     </div>
 
     <nav class="module-breadcrumb">

@@ -13,18 +13,12 @@
 {% block content %}
 <div class="menu-screen">
 
-  <span class="menu-circle menu-circle-1"></span>
-  <span class="menu-circle menu-circle-2"></span>
-  <span class="menu-circle menu-circle-3"></span>
-  <span class="menu-circle menu-circle-4"></span>
+  {% include 'partials/menu_circles.html' %}
 
   <div class="menu-content fade-in">
 
     <div class="menu-header">
-      <div>
-        <p class="menu-brand">ELYON</p>
-        <p class="menu-subtitle">Sistema de gestión empresarial</p>
-      </div>
+      {% include 'partials/menu_brand.html' %}
       <div class="menu-search glass-input">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <input type="text" placeholder="Buscar módulo...">
